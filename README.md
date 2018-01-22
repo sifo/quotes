@@ -25,6 +25,6 @@ text file and stream the response.
 ## Requirements 
 
 - Java 1.8
-- Scala 2.12.5
+- Scala 2.12.4
 - SBT 1.0.1
 

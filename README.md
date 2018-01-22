@@ -18,7 +18,7 @@ Implements a simple rest quote service.
 This demo application is written in scala with akka-http which get his data from
 text file and stream the response.
 
-## Implementation 
+## Execution 
 
 - `sbt run`
 

@@ -33,7 +33,7 @@ object WebServer {
 
         } ~
         path("quotes") {
-          parameters('author.*, 'quote.*) { (authors, quotes) =>
+          parameters('author.*, 'quote.*, 'text.?) { (authors, quotes, text) =>
             val response: Source[ByteString, Any] = {
               val regex = """(.*)\t(.*)""".r
               val quotesSource = scala.io.Source.fromResource("quotes.txt")
@@ -55,6 +55,12 @@ object WebServer {
                     case Nil => true
                     case multiple =>
                       multiple.filter(q => l._2.toLowerCase.contains(q.toLowerCase)).size > 0
+                  }
+                }
+                .filter { l =>
+                  text match {
+                    case None => true
+                    case Some(t) => t.toLowerCase.contains(l._2.toLowerCase)
                   }
                 }
                 .map { l =>
